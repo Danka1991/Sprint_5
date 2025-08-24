@@ -19,3 +19,12 @@ def sign_in_and_go_to_personal_account(driver):
     WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(Locators.personal_account_button)).click() # Ждем появление кнопки ЛК, т.к. нас снова на мейн перекидывает и нажимаем
     WebDriverWait(driver, 10).until(expected_conditions.url_to_be(profile_url))
     return driver
+
+def sign_up(driver, name, email, password):
+    # Проходим авторизацию для регистрации
+    WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(Locators.email_input_reg))       
+    driver.find_element(*Locators.name_input).send_keys(name)   # Заполняем форму
+    driver.find_element(*Locators.email_input_reg).send_keys(email)
+    driver.find_element(*Locators.password_input).send_keys(password)
+    driver.find_element(*Locators.register_button).click()
+    return driver

@@ -21,7 +21,5 @@ class TestConstructor:
         driver.get(main_url) 
         WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(Locators.sauces_section)).click() # Переход к соусам
         WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(Locators.buns_section)).click() # Переход к булкам
-        new_element = WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located(Locators.active_section))
-        assert new_element.is_displayed() # Проверка наличия активного раздела
-        activ_tab = driver.find_element(*Locators.active_section) # Поиск активного раздела 
+        activ_tab = WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located(Locators.active_buns_section))
         assert "Булки" in activ_tab.text
